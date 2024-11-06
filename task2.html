@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Простой Калькулятор</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('https://images.pexels.com/photos/531880/pexels-photo-531880.jpeg?cs=srgb&dl=pexels-pixabay-531880.jpg&fm=jpg');
+            margin: 0;
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .calculator {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            text-align: center;
+        }
+
+        .calculator h2 {
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid gray;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 12px;
+            display: none;
+            margin-top: 5px;
+        }
+
+        .result-message {
+            font-size: 18px;
+            color: #2ecc71;
+            margin-top: 15px;
+        }
+
+        .calculate-btn {
+            width: 100%;
+            padding: 10px;
+            background-color: #3498db;
+            border: none;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .calculate-btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+
+<div class="calculator">
+    <h2>Калькулятор</h2>
+    <div class="form-group">
+        <input type="number" id="number1" placeholder="First number:">
+    </div>
+    <div class="form-group">
+        <input type="number" id="number2" placeholder="Second number:">
+    </div>
+    <div class="form-group">
+        <select id="operation">
+            <option value="add">Сложение</option>
+            <option value="subtract">Вычитание</option>
+            <option value="multiply">Умножение</option>
+            <option value="divide">Деление</option>
+        </select>
+    </div>
+    <button class="calculate-btn" onclick="calculate()">Посчитать</button>
+    <div class="error-message" id="error-message">Пожалуйста, введите оба числа.</div>
+    <div class="result-message" id="result-message"></div>
+</div>
+
+<script>
+    function calculate() {
+        const number1 = document.getElementById('number1').value;
+        const number2 = document.getElementById('number2').value;
+        const operation = document.getElementById('operation').value;
+        const errorMessage = document.getElementById('error-message');
+        const resultMessage = document.getElementById('result-message');
+
+        if (number1 === "" || number2 === "") {
+            errorMessage.style.display = "block";
+            resultMessage.textContent = "";
+            return;
+        } else {
+            errorMessage.style.display = "none";
+        }
+
+        let result;
+        const num1 = parseFloat(number1);
+        const num2 = parseFloat(number2);
+
+        switch (operation) {
+            case "add":
+                result = num1 + num2;
+                break;
+            case "subtract":
+                result = num1 - num2;
+                break;
+            case "multiply":
+                result = num1 * num2;
+                break;
+            case "divide":
+                if (num2 === 0) {
+                    resultMessage.textContent = "Error: division on zero";
+                    return;
+                }
+                result = num1 / num2;
+                break;
+        }
+
+        resultMessage.textContent = "Answer: " + result;
+    }
+</script>
+
+</body>
+</html>

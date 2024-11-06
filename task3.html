@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Галерея изображений</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f2f5;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .thumbnail {
+            width: 120px;
+            height: 120px;
+            overflow: hidden;
+            cursor: pointer;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .thumbnail img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .thumbnail:hover {
+            transform: scale(1.05);
+        }
+
+        .preview-container {
+            flex-grow: 1;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .preview {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .preview-placeholder {
+            color: #888;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<h2>Галерея изображений</h2>
+<div class="preview-container">
+    <div class="preview-placeholder">Нажмите на миниатюру, чтобы увидеть изображение</div>
+</div>
+
+<div class="gallery">
+    <div class="thumbnail" onclick="showPreview('https://avatars.dzeninfra.ru/get-zen_doc/8269145/pub_641ec1d0798be415157b4180_641f3d1cd4b1f54fcf2f0a01/scale_1200')">
+        <img src="https://avatars.dzeninfra.ru/get-zen_doc/8269145/pub_641ec1d0798be415157b4180_641f3d1cd4b1f54fcf2f0a01/scale_1200" alt="Image 1">
+    </div>
+    <div class="thumbnail" onclick="showPreview('https://koshka.top/uploads/posts/2021-12/1639867198_1-koshka-top-p-samie-milie-porodi-koshek-1.jpg')">
+        <img src="https://koshka.top/uploads/posts/2021-12/1639867198_1-koshka-top-p-samie-milie-porodi-koshek-1.jpg" alt="Image 2">
+    </div>
+    <div class="thumbnail" onclick="showPreview('https://assets.coingecko.com/coins/images/34354/large/photo_2024-01-07_21.44.19.jpeg?1704703981')">
+        <img src="https://assets.coingecko.com/coins/images/34354/large/photo_2024-01-07_21.44.19.jpeg?1704703981" alt="Image 3">
+    </div>
+    <div class="thumbnail" onclick="showPreview('https://pbs.twimg.com/media/Fu1ptGkaUAAvSLC.jpg')">
+        <img src="https://pbs.twimg.com/media/Fu1ptGkaUAAvSLC.jpg" alt="Image 4">
+    </div>
+    <div class="thumbnail" onclick="showPreview('https://i.redd.it/smol-cat-looking-sideways-angrily-v0-o7as1cua0lp81.png?width=639&format=png&auto=webp&s=840f710d7fb1762e4d214806d0f0f863a18c02f8')">
+        <img src="https://i.redd.it/smol-cat-looking-sideways-angrily-v0-o7as1cua0lp81.png?width=639&format=png&auto=webp&s=840f710d7fb1762e4d214806d0f0f863a18c02f8" alt="Image 5">
+    </div>
+</div>
+
+<script>
+    function showPreview(imageUrl) {
+        const previewContainer = document.querySelector('.preview-container');
+        previewContainer.innerHTML = `<img src="${imageUrl}" alt="Увеличенное изображение" class="preview">`;
+    }
+</script>
+
+</body>
+</html>
